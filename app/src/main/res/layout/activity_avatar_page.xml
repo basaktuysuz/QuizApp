@@ -6,172 +6,27 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    tools:context=".AvatarPage">
+    tools:context=".Avatar.AvatarPage">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Your Avatar"
+        android:textSize="28sp"
+      android:textAlignment="center"
+        android:fontFamily="@font/alef_bold"
+        />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:paddingTop="20dp">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-     >
-
-            <!-- Avatar buttons -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-
-                android:padding="12dp">
-
-                <ImageButton
-                    android:id="@+id/avatarButton1"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/avatar1"
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent" />
-
-                <ImageButton
-                    android:id="@+id/avatarButton2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="12dp" />
-
-                <ImageButton
-                    android:id="@+id/avatarButton3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="12dp" />
-                <ImageButton
-                    android:id="@+id/avatarButton4"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="12dp" />
-                <ImageButton
-                    android:id="@+id/avatarButton5"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="12dp" />
-            </LinearLayout>
-            <!-- Avatar buttons -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-
-                android:padding="12dp">
-
-                <ImageButton
-                    android:id="@+id/avatarButton6"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/avatar1"
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent" />
-
-                <ImageButton
-                    android:id="@+id/avatarButton2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="12dp" />
-
-                <ImageButton
-                    android:id="@+id/avatarButton3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="12dp" />
-                <ImageButton
-                    android:id="@+id/avatarButton4"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="12dp" />
-                <ImageButton
-                    android:id="@+id/avatarButton5"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="12dp" />
-            </LinearLayout>
-            <!-- Avatar buttons -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <ImageButton
-                    android:id="@+id/avatarButton1"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/avatar1"
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent" />
-
-                <ImageButton
-                    android:id="@+id/avatarButton2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="12dp" />
-
-                <ImageButton
-                    android:id="@+id/avatarButton3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="12dp" />
-                <ImageButton
-                    android:id="@+id/avatarButton4"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="12dp" />
-                <ImageButton
-                    android:id="@+id/avatarButton5"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="12dp" />
-            </LinearLayout>
-
-            <!-- Repeat similar blocks for other rows of avatar buttons -->
-
-        </LinearLayout>
+            android:layout_height="match_parent"/>
     </ScrollView>
 
 </LinearLayout>

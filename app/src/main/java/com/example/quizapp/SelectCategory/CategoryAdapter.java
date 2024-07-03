@@ -13,12 +13,12 @@ import com.example.quizapp.R;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<ViewHolder> {
     private ArrayList<CategoryInfo> categoryList;
     private SelectCategory selectCategory;
     private ViewHolder viewHolder;
 
-    public RecyclerViewAdapter(ArrayList<CategoryInfo> categoryList, SelectCategory selectCategory) {
+    public CategoryAdapter(ArrayList<CategoryInfo> categoryList, SelectCategory selectCategory) {
         this.categoryList = categoryList;
         this.selectCategory = selectCategory;
     }

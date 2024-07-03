@@ -50,8 +50,6 @@ public class LoginPage extends AppCompatActivity {
 
 
     //checking is user exists
-
-
     public void isUser() {
 
         String userEnteredEmail = loginEmail.getEditText().getText().toString().trim();
@@ -67,10 +65,10 @@ public class LoginPage extends AppCompatActivity {
                             // User authentication successful
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (user != null) {
-                                // User is logged in, get user details from Firebase User object
+                                // User is logged in
                                 String userId = user.getUid();
 
-                                // Retrieve additional user details from Firestore Database
+                                // Retrieve  user details
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                                 DocumentReference userReference = db.collection("users").document(userId);
                                 userReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -85,7 +83,7 @@ public class LoginPage extends AppCompatActivity {
                                                 String emailFromDB = document.getString("email");
                                                 String passwordFromDB = document.getString("password");
 
-                                                Intent intent = new Intent(getApplicationContext(), SelectCategory.class);
+                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                                 // Passing values to another activity
                                                 intent.putExtra("name", nameFromDB);
                                                 intent.putExtra("username", usernameFromDB);
@@ -102,7 +100,7 @@ public class LoginPage extends AppCompatActivity {
                                                 Toast.makeText(getApplicationContext(), "User not found", Toast.LENGTH_SHORT).show();
                                             }
                                         } else {
-                                            // Handle task exception
+
                                             Toast.makeText(getApplicationContext(), "Error fetching user data", Toast.LENGTH_SHORT).show();
                                         }
                                     }

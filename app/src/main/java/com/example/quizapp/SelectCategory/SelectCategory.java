@@ -26,7 +26,7 @@ public class SelectCategory extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private CategoryInfo categoryInfo;
-    private RecyclerViewAdapter recycleViewAdapter;
+    private CategoryAdapter recycleViewAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ArrayList<CategoryInfo> categoryList = new ArrayList<>();
     private ProgressDialog progressDialog;
@@ -73,7 +73,7 @@ public class SelectCategory extends AppCompatActivity {
                                 categoryInfo = new CategoryInfo(id, categoryName);
                                 categoryList.add(categoryInfo);
                             }
-                            recycleViewAdapter = new RecyclerViewAdapter( categoryList,SelectCategory.this);
+                            recycleViewAdapter = new CategoryAdapter( categoryList,SelectCategory.this);
                             recyclerView.setAdapter(recycleViewAdapter);
                             progressDialog.dismiss();
                         } catch (Exception e) {
