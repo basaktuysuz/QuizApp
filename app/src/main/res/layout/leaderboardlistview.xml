@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+
+android:layout_marginBottom="8dp"
+android:background="@drawable/rounded_background"
+android:orientation="horizontal"
+android:padding="16dp">
+
+<TextView
+    android:id="@+id/listNo"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:layout_gravity="center"
+    android:fontFamily="@font/alef_bold"
+    android:text="4"
+    android:textAlignment="center"
+    android:textColor="@color/white"
+    android:textSize="18sp" />
+
+<ImageView
+    android:id="@+id/leaderAvatar"
+    android:layout_width="64dp"
+    android:layout_height="64dp"
+    android:layout_gravity="center"
+    android:src="@drawable/avatar1" />
+
+<LinearLayout
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/leaderName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alef_bold"
+        android:text="Davis Curtis"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/leaderScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="2,569 points"
+        android:textColor="#FFFFFF" />
+</LinearLayout>
+
+</LinearLayout>

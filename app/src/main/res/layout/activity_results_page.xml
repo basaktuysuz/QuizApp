@@ -227,7 +227,7 @@
 
                 <org.eazegraph.lib.charts.PieChart
                     android:id="@+id/piechart"
-                    android:layout_width="259dp"
+                    android:layout_width="230dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="start"
                android:layout_margin="10dp"

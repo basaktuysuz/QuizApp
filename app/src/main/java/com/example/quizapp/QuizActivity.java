@@ -17,9 +17,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class QuizActivity extends AppCompatActivity {
     private List<Question> questions;
@@ -198,39 +201,40 @@ private Button btnSkip;
             String userId = user.getUid();
             DocumentReference userReference = db.collection("users").document(userId);
 
-            // Önce kullanıcı verisini alıp gerekli güncelleme yapabiliriz, eğer kullanıcı verisi gerekiyorsa.
+            // Kullanıcı verisini al
             userReference.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        // Kullanıcı verisi varsa burada işlem yapabiliriz
+                        // Kullanıcı verisi varsa
                         UserHelperClass userHelperClass = document.toObject(UserHelperClass.class);
                         if (userHelperClass != null) {
-                            // Örneğin, skoru güncelleyebiliriz
-                            userHelperClass.setHighestScore(score);
+                            int highestScore = userHelperClass.getHighestScore();
+                            // Eğer yeni skor daha yüksekse
+                            if (score > highestScore) {
+                                userHelperClass.setHighestScore(score);
 
-                            // Sadece highestScore alanını güncellemek için update() metodunu kullanabiliriz
-                            userReference.update("highestScore", score)
-                                    .addOnSuccessListener(aVoid -> {
-                                        // Başarılı bir şekilde güncellendiğini bildirme
-                                        Log.d(TAG, "Kullanıcı verisi güncellendi.");
-                                    })
-                                    .addOnFailureListener(e -> {
+                                // highestScore alanını güncelle
+                                userReference.update("highestScore", score)
+                                        .addOnSuccessListener(aVoid -> {
+                                            // highestScore koleksiyonuna yeni skor ekle
+                                            Map<String, Object> scoreData = new HashMap<>();
+                                            scoreData.put("name", userHelperClass.getName());
+                                            scoreData.put("score", score);
+                                            scoreData.put("time", FieldValue.serverTimestamp());
 
-                                        Log.w(TAG, "Kullanıcı verisi güncellenirken hata oluştu.", e);
-                                    });
+                                            // highestScore koleksiyonunda userId ile kaydını da kontrol
+                                            DocumentReference highestScoreRef = db.collection("highestScores").document(userId);
+                                            highestScoreRef.set(scoreData);
+                                        });
+                            }
                         }
-                    } else {
-                        Log.d(TAG, "Belirtilen kullanıcı bulunamadı.");
                     }
-                } else {
-                    Log.w(TAG, "Kullanıcı verisini alma başarısız oldu.", task.getException());
                 }
             });
-        } else {
-            Log.d(TAG, "Oturum açmış bir kullanıcı bulunamadı.");
         }
     }
+
 
 
 }
