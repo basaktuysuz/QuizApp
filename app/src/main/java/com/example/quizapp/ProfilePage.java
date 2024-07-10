@@ -28,7 +28,7 @@ public class ProfilePage extends AppCompatActivity {
         setContentView(R.layout.activity_profile_page);
 
         email=findViewById(R.id.email_profile);
-        phoneNo=findViewById(R.id.phoneNo_profile);
+
         username=findViewById(R.id.username_profile);
         fullname=findViewById(R.id.fullname_profile);
 
@@ -69,11 +69,11 @@ public class ProfilePage extends AppCompatActivity {
                             String urlFromDB = document.getString("URL");
                             String nameFromDB = document.getString("name");
                             String usernameFromDB = document.getString("username");
-                            String phoneNoFromDB = document.getString("phoneNo");
+                           // String phoneNoFromDB = document.getString("phoneNo");
                             String emailFromDB = document.getString("email");
 
 email.setText(emailFromDB);
-phoneNo.setText(phoneNoFromDB);
+//phoneNo.setText(phoneNoFromDB);
 username.setText(usernameFromDB);
 fullname.setText(nameFromDB);
 

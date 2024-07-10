@@ -15,6 +15,9 @@
         android:theme="@style/Theme.QuizApp"
         tools:targetApi="31">
         <activity
+            android:name=".ResultsPage"
+            android:exported="false" />
+        <activity
             android:name=".Avatar.AvatarPage"
             android:exported="false" />
         <activity

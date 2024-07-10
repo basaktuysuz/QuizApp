@@ -2,6 +2,7 @@ package com.example.quizapp;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ public class QuizActivity extends AppCompatActivity {
     private int score = 0;
     private int correctAnswers = 0;
     private int incorrectAnswers = 0;
-
+private Button btnSkip;
     private TextView questionTextView;
     private TextView scoreTextView;
     private TextView questionNumberTextView;
@@ -54,7 +55,13 @@ public class QuizActivity extends AppCompatActivity {
                 findViewById(R.id.option4)
         };
         mainLayout = findViewById(R.id.main_layout);
-
+        btnSkip = findViewById(R.id.skipOption);
+        btnSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                skipQuestion();
+            }
+        });
         fetchQuestions();
     }
 
@@ -153,6 +160,10 @@ public class QuizActivity extends AppCompatActivity {
                 updateQuestionNumber(); // Update question number
             } else {
                 showScore();
+                Intent intent = new Intent(getApplicationContext(), ResultsPage.class);
+                intent.putExtra("CorrectAnswer", correctAnswers);
+                intent.putExtra("InCorrectAnswer", incorrectAnswers);
+                startActivity(intent);
             }
         }, 2000); // Delay for 2 seconds before showing the next question
     }
@@ -162,7 +173,21 @@ public class QuizActivity extends AppCompatActivity {
         scoreTextView.setText(scoreText);
     }
 
+    private void skipQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.size()) {
+            displayQuestion();
+            updateQuestionNumber(); // Soru numarasını güncelle
+        } else {
+            showScore();
+            Intent intent = new Intent(getApplicationContext(), ResultsPage.class);
+            intent.putExtra("CorrectAnswer", correctAnswers);
+            intent.putExtra("InCorrectAnswer", incorrectAnswers);
+            startActivity(intent);
+        }
+    }
     private void showScore() {
+
         Toast.makeText(this, "Your score: " + score, Toast.LENGTH_LONG).show();
         sendScoreToFirebase(score);
     }

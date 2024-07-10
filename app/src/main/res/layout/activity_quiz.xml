@@ -78,6 +78,39 @@
             android:text="Ans D"
             android:textColor="@color/black" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/previousOption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:backgroundTint="#86FCEA"
+
+                android:drawableLeft="@drawable/previous"
+                android:text="Previous"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/skipOption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#86FC96"
+
+                android:drawableRight="@drawable/skip"
+                android:text="Skip"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+
     </LinearLayout>
 
 
