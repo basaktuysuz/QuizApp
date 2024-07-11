@@ -219,9 +219,10 @@ private Button btnSkip;
                                         .addOnSuccessListener(aVoid -> {
                                             // highestScore koleksiyonuna yeni skor ekle
                                             Map<String, Object> scoreData = new HashMap<>();
-                                            scoreData.put("name", userHelperClass.getName());
+                                            scoreData.put("name", userHelperClass.getUsername());
                                             scoreData.put("score", score);
                                             scoreData.put("time", FieldValue.serverTimestamp());
+                                            scoreData.put("URL", userHelperClass.getURL());
 
                                             // highestScore koleksiyonunda userId ile kaydını da kontrol
                                             DocumentReference highestScoreRef = db.collection("highestScores").document(userId);

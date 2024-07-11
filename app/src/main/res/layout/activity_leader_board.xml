@@ -111,8 +111,7 @@
                 <ImageView
                     android:id="@+id/firstUserAvatar"
                     android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:background="@drawable/circle" />
+                    android:layout_height="64dp" />
 
                 <TextView
                     android:id="@+id/firstUserName"

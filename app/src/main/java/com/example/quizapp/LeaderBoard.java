@@ -1,26 +1,31 @@
 package com.example.quizapp;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Source;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LeaderBoard extends AppCompatActivity {
 
     private FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,12 +72,16 @@ public class LeaderBoard extends AppCompatActivity {
         TextView name = findViewById(nameId);
         TextView score = findViewById(scoreId);
 
-      //firestoredan verileri alma
-        String userName = document.getString("name");
+        //firestoredan verileri alma
         Long userScore = document.getLong("score");
+        String userName = document.getString("name");
+        String url = document.getString("URL");
 
+        if (url != null) {
+            // Load the avatar image from URL using a library like Picasso or Glide
+            Glide.with(this).load(url).into(avatar);
+        }
         //avatar kısmı
-
         name.setText(userName);
         score.setText(String.valueOf(userScore) + " QP");
     }
