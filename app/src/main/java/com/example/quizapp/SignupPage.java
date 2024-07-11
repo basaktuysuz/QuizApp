@@ -84,10 +84,11 @@ FirebaseFirestore db;
                                 String userId = user.getUid();
                                 String name = regName.getEditText().getText().toString();
                                 String username = regUsername.getEditText().getText().toString();
+                                String URL ="https://firebasestorage.googleapis.com/v0/b/quizapp-d92d9.appspot.com/o/Avatar%20Icons%2Fanimal4.png?alt=media&token=002dd31e-8124-45b4-824e-e9834a4b460e";
 
                                 int highestScore = 0;
 
-                                UserHelperClass helperClass = new UserHelperClass(name, username, email , password ,highestScore);
+                                UserHelperClass helperClass = new UserHelperClass(name, username, email , password ,URL,highestScore);
                                 db.collection("users").document(userId).set(helperClass)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override

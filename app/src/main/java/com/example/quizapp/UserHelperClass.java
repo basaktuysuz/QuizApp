@@ -1,22 +1,27 @@
 package com.example.quizapp;
 
+import com.google.firebase.firestore.PropertyName;
+
 public class UserHelperClass {
     //input olarak girilen verileri user ınfosu olarak kullanmak için bu class
     //to create users we use userhelperclass
     String name,username,email,password ;
+    @PropertyName("URL")
+    String URL;
     int highestScore;
 
-    public UserHelperClass(String name, String username, String email, String password,int highestScore) {
+    public UserHelperClass() {
+    }
+
+    public UserHelperClass(String name, String username, String email, String password, String URL, int highestScore) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.URL = URL;
         this.highestScore = highestScore;
     }
 
-    public UserHelperClass() {
-
-    }
 
     public String getName() {
         return name;
@@ -42,9 +47,20 @@ public class UserHelperClass {
         this.email = email;
     }
 
-
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    @PropertyName("URL")
+    public String getURL() {
+        return URL;
+    }
+    @PropertyName("URL")
+    public void setURL(String URL) {
+        this.URL = URL;
     }
 
     public int getHighestScore() {
@@ -53,9 +69,5 @@ public class UserHelperClass {
 
     public void setHighestScore(int highestScore) {
         this.highestScore = highestScore;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
