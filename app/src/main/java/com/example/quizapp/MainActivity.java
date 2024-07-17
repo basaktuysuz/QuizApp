@@ -1,19 +1,23 @@
 package com.example.quizapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.quizapp.Avatar.AvatarPage;
 import com.example.quizapp.SelectCategory.SelectCategory;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,21 +28,38 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        MobileAds.initialize(this);
+
+        AdView adView = findViewById(R.id.adView);
+        LinearLayout adContainerView = findViewById(R.id.adContainer);
+
+        // Replace ad container with new ad view.
+        adContainerView.removeAllViews();
+        adContainerView.addView(adView);
+
+
+        // Start loading the ad in the background.
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
         Bundle bundle = getIntent().getExtras();
-        String name= (String) bundle.get("username");
+        String name = (String) bundle.get("username");
         TextView nametext = findViewById(R.id.nameWelcome);
-        nametext.setText(name+ " !!!");
+        nametext.setText(name + " !!!");
 
 
-         updateAvatarIconOnMainpage();
+        updateAvatarIconOnMainpage();
         Button startQ = findViewById(R.id.startQuiz);
         startQ.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         leader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),LeaderBoard.class);
+                Intent intent = new Intent(getApplicationContext(), LeaderBoard.class);
                 startActivity(intent);
             }
         });
@@ -67,11 +88,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         updateAvatarIconOnMainpage();
     }
+
     public void updateAvatarIconOnMainpage() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
@@ -94,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
                                     .load(urlFromDB)
                                     .placeholder(R.drawable.loading) //  image while loading
                                     .into(imageView);
-
 
 
                             // Set click listener for profile icon
@@ -120,5 +142,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    private void loadBanner() {
+
+        // Create a new ad view.
+        AdView adView = findViewById(R.id.adView);
+
+        adView.setAdUnitId("ca-app-pub-1920849303591174/5011583989");
+
+
+        // Start loading the ad in the background.
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
+
+
+}
 
